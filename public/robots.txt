@@ -1,0 +1,13 @@
+# *
+User-agent: *
+Allow: /
+
+# Disallow admin and internal areas
+Disallow: /admin/
+Disallow: /admin
+
+# Host
+Host: https://www.shavkatovpm.uz
+
+# Sitemaps
+Sitemap: https://www.shavkatovpm.uz/sitemap.xml
