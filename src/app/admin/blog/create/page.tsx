@@ -9,7 +9,9 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 
-type SectionItem = {
+type ContentItem = {
+  id: string;
+  type: 'h1' | 'h2' | 'h3';
   title: string;
   content: string;
 };
@@ -42,8 +44,8 @@ export default function CreateBlogPage() {
   const [headerTitle, setHeaderTitle] = useState<string>("");
   const [headerSubtitle, setHeaderSubtitle] = useState<string>("");
 
-  // Sections
-  const [sections, setSections] = useState<SectionItem[]>([]);
+  // Content items (h1, h2, h3 with paragraphs)
+  const [contentItems, setContentItems] = useState<ContentItem[]>([]);
 
   // Tags and SEO
   const [tags, setTags] = useState<Keyword[]>([]);
@@ -65,26 +67,31 @@ export default function CreateBlogPage() {
     [seo.length]
   );
 
-  const addSection = () => {
-    setSections((prev) => [...prev, { title: "", content: "" }]);
+  const addContentItem = (type: 'h1' | 'h2' | 'h3') => {
+    const newItem: ContentItem = {
+      id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+      type,
+      title: "",
+      content: ""
+    };
+    setContentItems((prev) => [...prev, newItem]);
     setActivePane("sections");
   };
 
-  const updateSection = (
-    index: number,
-    field: keyof SectionItem,
+  const updateContentItem = (
+    id: string,
+    field: keyof ContentItem,
     value: string
   ) => {
-    setSections((prev) => {
-      const copy = [...prev];
-      const item = { ...copy[index], [field]: value } as SectionItem;
-      copy[index] = item;
-      return copy;
+    setContentItems((prev) => {
+      return prev.map(item =>
+        item.id === id ? { ...item, [field]: value } : item
+      );
     });
   };
 
-  const removeSection = (index: number) => {
-    setSections((prev) => prev.filter((_, i) => i !== index));
+  const removeContentItem = (id: string) => {
+    setContentItems((prev) => prev.filter(item => item.id !== id));
   };
 
   const addTag = () => {
@@ -121,7 +128,10 @@ export default function CreateBlogPage() {
         subtitle: headerSubtitle,
       },
       categoryId,
-      sections: sections.map((s) => ({ title: s.title, subtitle: s.content })),
+      sections: contentItems.map((item) => ({
+        title: `${item.type.toUpperCase()}: ${item.title}`,
+        subtitle: item.content
+      })),
       tags: tags.map((t) => ({ value: t.value })),
       seo: seo.map((k) => ({ value: k.value })),
     };
@@ -169,10 +179,24 @@ export default function CreateBlogPage() {
           <div className="flex flex-wrap items-center gap-2 md:gap-3">
             <button
               type="button"
-              onClick={addSection}
-              className="rounded-md border border-[#3F3F3F] bg-[#3A3A3A] px-4 py-2 text-sm font-semibold text-[#E5E5E5] hover:bg-[#444] focus:outline-none"
+              onClick={() => addContentItem('h1')}
+              className="rounded-md border border-[#3F3F3F] bg-[#3A3A3A] px-3 py-2 text-sm font-semibold text-[#E5E5E5] hover:bg-[#444] focus:outline-none"
             >
-              + Section
+              + H1
+            </button>
+            <button
+              type="button"
+              onClick={() => addContentItem('h2')}
+              className="rounded-md border border-[#3F3F3F] bg-[#3A3A3A] px-3 py-2 text-sm font-semibold text-[#E5E5E5] hover:bg-[#444] focus:outline-none"
+            >
+              + H2
+            </button>
+            <button
+              type="button"
+              onClick={() => addContentItem('h3')}
+              className="rounded-md border border-[#3F3F3F] bg-[#3A3A3A] px-3 py-2 text-sm font-semibold text-[#E5E5E5] hover:bg-[#444] focus:outline-none"
+            >
+              + H3
             </button>
             <button
               type="button"
@@ -248,24 +272,24 @@ export default function CreateBlogPage() {
         {/* Pane Switcher (like carousel effect by swapping views) */}
         {activePane === "sections" && (
           <div className="space-y-5">
-            {sections.length === 0 && (
+            {contentItems.length === 0 && (
               <div className="rounded-md border border-dashed border-[#3F3F3F] p-6 text-center text-[#A1A1A1]">
-                + Section tugmasini bosing. Yangi bo'lim qo'shiladi.
+                + H1, + H2, yoki + H3 tugmalarini bosing.
               </div>
             )}
 
-            {sections.map((section, index) => (
+            {contentItems.map((item) => (
               <div
-                key={index}
+                key={item.id}
                 className="rounded-xl border border-[#3F3F3F] bg-[#1F1F1F] p-5"
               >
                 <div className="mb-4 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-[#C2C2C2]">
-                    {`Section ${index + 1}`}
+                    {item.type.toUpperCase()} - {item.title || `New ${item.type.toUpperCase()}`}
                   </h3>
                   <button
                     type="button"
-                    onClick={() => removeSection(index)}
+                    onClick={() => removeContentItem(item.id)}
                     className="text-sm text-red-400 hover:underline"
                   >
                     Remove
@@ -274,21 +298,21 @@ export default function CreateBlogPage() {
                 <div className="grid gap-4">
                   <input
                     type="text"
-                    value={section.title}
+                    value={item.title}
                     onChange={(e) =>
-                      updateSection(index, "title", e.target.value)
+                      updateContentItem(item.id, "title", e.target.value)
                     }
-                    placeholder={`Section ${index + 1}`}
+                    placeholder={`${item.type.toUpperCase()} title`}
                     className="w-full rounded-md border border-[#3F3F3F] bg-[#2A2A2A] px-3 py-2 text-[#E5E5E5] placeholder:text-[#7B7B7B] focus:outline-none"
                   />
                   <textarea
-                    value={section.content}
+                    value={item.content}
                     onChange={(e) =>
-                      updateSection(index, "content", e.target.value)
+                      updateContentItem(item.id, "content", e.target.value)
                     }
-                    placeholder="Paragraph"
-                    rows={4}
-                    className="w-full rounded-md border border-[#3F3F3F] bg-[#2A2A2A] px-3 py-2 text-[#E5E5E5] placeholder:text-[#7B7B7B] focus:outline-none"
+                    placeholder="Paragraph content"
+                    rows={6}
+                    className="w-full rounded-md border border-[#3F3F3F] bg-[#2A2A2A] px-3 py-2 text-[#E5E5E5] placeholder:text-[#7B7B7B] focus:outline-none whitespace-pre-wrap resize-y"
                   />
                 </div>
               </div>

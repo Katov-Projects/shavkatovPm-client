@@ -70,7 +70,7 @@ export default function ServiceSection() {
         {/* Desktop Layout */}
         <div className="hidden lg:grid lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left Column - Project Cards */}
-          <div className="space-y-8">
+          <div className="space-y-8 w-full flex flex-col">
             {data?.data?.map((project: any) => (
               <div
                 key={project?._id}
@@ -82,7 +82,7 @@ export default function ServiceSection() {
                       : "0 2px 6px rgba(29, 27, 27, 0.15)",
                 }}
                 onClick={() => handleProjectClick(project)}
-                className={`bg-[#EDEBE6] border border-[#C2C2C2E5] rounded-tl-[5px] rounded-tr-[5px] p-6  transition-shadow cursor-pointer duration-500 ease-in-out group ${
+                className={`w-full bg-[#EDEBE6] border border-[#C2C2C2E5] rounded-tl-[5px] rounded-tr-[5px] p-6 transition-shadow cursor-pointer duration-500 ease-in-out group ${
                   selectedProject?._id === project._id ? "shadow-2xl" : "shadow"
                 }`}
               >
