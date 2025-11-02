@@ -214,7 +214,7 @@ export default function CreateBlogPage() {
             </button>
             <div className="ml-auto flex items-center gap-2">
               <span className="hidden text-sm text-[#C2C2C2] md:inline">
-                Yakunlash & Keyingi Qadam
+                {categoryData?.data?.find((c: any) => c._id === categoryId)?.name || "Yakunlash & Keyingi Qadam"}
               </span>
               <button
                 type="submit"

@@ -57,9 +57,7 @@ export default function AboutComponent() {
           </p>
         </div>
 
-        <div className="hidden absolute md:block top-0 left-0 md:top-auto md:bottom-0 md:left-8 opacity-70">
-          <AdminImage />
-        </div>
+        
 
         <div className="flex flex-col h-[80%] cursor-pointer lg:flex-row justify-center lg:gap-16 items-center">
           <div className="ml-50 hidden md:block">

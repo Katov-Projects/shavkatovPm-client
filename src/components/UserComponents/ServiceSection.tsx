@@ -68,7 +68,7 @@ export default function ServiceSection() {
         </h2>
 
         {/* Desktop Layout */}
-        <div className="hidden lg:grid lg:grid-cols-2 gap-12 lg:gap-16">
+        <div className="hidden lg:grid lg:grid-cols-[450px_1fr] gap-12 lg:gap-16">
           {/* Left Column - Project Cards */}
           <div className="space-y-8 w-full flex flex-col">
             {data?.data?.map((project: any) => (
@@ -108,7 +108,7 @@ export default function ServiceSection() {
           </div>
 
           {/* Right Column - Project Details */}
-          <div className="text-gray-700 space-y-8 min-h-[260px]">
+          <div className="text-gray-700 space-y-8 min-h-[260px] w-[550px]">
             {/* Maqsad */}
             <div>
               <h3 className="text-xl font-bold text-gray-800 mb-4">Maqsad</h3>

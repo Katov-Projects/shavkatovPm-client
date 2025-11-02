@@ -126,16 +126,53 @@ const BlogDetalsPage = ({ id }: { id: string }) => {
 
             {/* Sections */}
             <div className="mt-8 space-y-6">
-              {blog?.sections?.map((s: any, idx: number) => (
-                <div key={idx}>
-                  <h2 className="text-[32px] font-bold text-[#737373] mb-3">
-                    {s.title}
-                  </h2>
+              {blog?.sections?.map((s: any, idx: number) => {
+                const subtitle = (
                   <p className="text-[#737373] whitespace-pre-wrap text-[14px] font-bold opacity-90 leading-7">
                     {s.subtitle}
                   </p>
-                </div>
-              ))}
+                );
+
+                if (s.title.startsWith("H1:")) {
+                  return (
+                    <div key={idx}>
+                      <h1 className="text-4xl font-extrabold text-[#4A4A4A] mb-3">
+                        {s.title.replace("H1:", "").trim()}
+                      </h1>
+                      {subtitle}
+                    </div>
+                  );
+                }
+                if (s.title.startsWith("H2:")) {
+                  return (
+                    <div key={idx}>
+                      <h2 className="text-3xl font-bold text-[#5A5A5A] mb-3">
+                        {s.title.replace("H2:", "").trim()}
+                      </h2>
+                      {subtitle}
+                    </div>
+                  );
+                }
+                if (s.title.startsWith("H3:")) {
+                  return (
+                    <div key={idx}>
+                      <h3 className="text-2xl font-semibold text-[#6A6A6A] mb-3">
+                        {s.title.replace("H3:", "").trim()}
+                      </h3>
+                      {subtitle}
+                    </div>
+                  );
+                }
+                // Default case if no prefix matches
+                return (
+                  <div key={idx}>
+                    <h2 className="text-3xl font-bold text-[#5A5A5A] mb-3">
+                      {s.title}
+                    </h2>
+                    {subtitle}
+                  </div>
+                );
+              })}
             </div>
 
             {/* Share */}
