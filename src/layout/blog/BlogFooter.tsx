@@ -17,7 +17,6 @@ const BlogFooterLayout = () => {
     { label: "Aloqa", href: "/?scroll=contact" },
   ];
 
-
   return (
     <footer className="bg-[#4b4b4b] md:h-[241px] flex items-center text-gray-300 py-12">
       <div className="max-w-6xl mx-auto px-4">
@@ -25,10 +24,11 @@ const BlogFooterLayout = () => {
           <div className="sm:hidden flex justify-between items-center">
             {navItems?.map((cat) => (
               <Link
-                className={`cursor-pointer hover:opacity-[75%] ${cat.href === "/blog" ? "opacity-100" :"opacity-50"}`}
+                className={`cursor-pointer hover:opacity-[75%] ${
+                  cat.href === "/blog" ? "opacity-100" : "opacity-50"
+                }`}
                 key={cat.href}
-                href={cat.href}
-              >
+                href={cat.href}>
                 {cat.label}
               </Link>
             ))}
@@ -44,8 +44,7 @@ const BlogFooterLayout = () => {
                 href="https://t.me/shavkatovpm"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:underline"
-              >
+                className="text-white hover:underline">
                 t.me/shavkatovpm
               </a>
             </div>
@@ -53,12 +52,11 @@ const BlogFooterLayout = () => {
             <div className="flex justify-between">
               <span className="text-gray-400 ">Telegram bot orqali aloqa:</span>
               <a
-                href="https://t.me/shavkatovpm_bot"
+                href="https://t.me/shavkatovpmbot"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:underline"
-              >
-                t.me/shavkatovpm_bot
+                className="text-white hover:underline">
+                t.me/shavkatovpmbot
               </a>
             </div>
 
@@ -66,8 +64,7 @@ const BlogFooterLayout = () => {
               <span className="text-gray-400">Elektron pochta:</span>
               <a
                 href="mailto:shavkatovpm@gmail.com?subject=Salom&body=Men%20siz%20bilan%20aloqa%20qilmoqchiman."
-                className="text-white hover:underline"
-              >
+                className="text-white hover:underline">
                 shavkatovpm@gmail.com
               </a>
             </div>
