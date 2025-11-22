@@ -64,12 +64,12 @@ const FooterLayout = () => {
             <div className="flex justify-between">
               <span className="text-gray-400 ">Telegram bot orqali aloqa:</span>
               <a
-                href="https://t.me/shavkatovpm_bot"
+                href="https://t.me/shavkatovpmbot"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:underline"
               >
-                t.me/shavkatovpm_bot
+                t.me/shavkatovpmbot
               </a>
             </div>
 
