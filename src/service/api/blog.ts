@@ -11,9 +11,15 @@ export const createBlogApi = async (payload: IBlogCreate) => {
   }
 };
 
-export const getAllBlogApi = async (search?: string) => {
+export const getAllBlogApi = async (search?: string, sortBy?: string) => {
   try {
-    const url = search ? `/blog/all?search=${search}` : '/blog/all';
+    const params = new URLSearchParams();
+    if (search) params.append("search", search);
+    if (sortBy) params.append("sortBy", sortBy);
+
+    const url = params.toString()
+      ? `/blog/all?${params.toString()}`
+      : "/blog/all";
     const res = await customAxios.get(url);
     return res.data;
   } catch (error) {
@@ -56,7 +62,9 @@ export const setViewBlogApi = async (id: string, userId: string) => {
     return res.data;
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;
-    throw new Error(err.response?.data?.message || "Blog ko'rishini oshirishda xatolik");
+    throw new Error(
+      err.response?.data?.message || "Blog ko'rishini oshirishda xatolik"
+    );
   }
 };
 

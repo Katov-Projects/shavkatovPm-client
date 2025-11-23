@@ -52,8 +52,7 @@ const BlogNavbarLayout = () => {
         <div className="mx-auto h-15 max-w-7xl px-6 py-2 flex items-center justify-between">
           <Link
             href="/"
-            className="text-gray-200 cursor-pointer text-2xl font-semibold"
-          >
+            className="text-gray-200 cursor-pointer text-2xl font-semibold">
             Shavkatov PM
           </Link>
 
@@ -67,8 +66,7 @@ const BlogNavbarLayout = () => {
                 }}
                 className={`cursor-pointer hover:opacity-75 ${
                   item.href === "/blog" ? "opacity-100" : "opacity-50"
-                }`}
-              >
+                }`}>
                 {item.label}
               </Link>
             ))}
@@ -78,8 +76,7 @@ const BlogNavbarLayout = () => {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2 rounded-lg hover:bg-black/10"
-              aria-label="Toggle menu"
-            >
+              aria-label="Toggle menu">
               {isMenuOpen ? (
                 <X size={20} className="text-gray-200" />
               ) : (
@@ -92,28 +89,28 @@ const BlogNavbarLayout = () => {
         <div
           className={`md:hidden border-t border-black/10 mobile-menu ${
             isMenuOpen ? "mobile-menu--open" : ""
-          }`}
-        >
+          }`}>
           <nav className="grid grid-cols-2 gap-3 px-6 py-3 bg-[#4b4b4b]/70">
             {navItemsPhone.map((item) => (
-              <span
+              <Link
                 key={item.href}
+                href={item.href}
                 className={`text-black cursor-pointer bg-white py-3 text-center rounded`}
                 onClick={() => {
-                  if (item.href == "/blog") {
-                    router.push("/blog");
-                  }
-                  const element = document.getElementById(item.href);
-                  if (element) {
-                    const y =
-                      element.getBoundingClientRect().top + window.scrollY;
-                    window.scrollTo({ top: y, behavior: "smooth" });
-                    setIsMenuOpen(false);
-                  }
-                }}
-              >
+                  // if (item.href == "/blog") {
+                  //   router.push("/blog");
+                  // }
+                  // const element = document.getElementById(item.href);
+                  // if (element) {
+                  //   const y =
+                  //     element.getBoundingClientRect().top + window.scrollY;
+                  //   window.scrollTo({ top: y, behavior: "smooth" });
+                  //   setIsMenuOpen(false);
+                  // }
+                  setIsMenuOpen(false);
+                }}>
                 {item.label}
-              </span>
+              </Link>
             ))}
           </nav>
         </div>

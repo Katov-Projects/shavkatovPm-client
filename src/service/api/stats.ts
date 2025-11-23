@@ -50,7 +50,6 @@ export const createPdfApi = async (data: any) => {
   }
 };
 
-
 export const getBlogStats = async (
   count: number,
   step: number,

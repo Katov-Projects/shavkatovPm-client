@@ -16,6 +16,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const BlogPage = () => {
   const [search, setSearch] = useState("");
+  const [sortBy, setSortBy] = useState<string>("newest");
   const [traffic, setTraffic] = useState("direct");
   const [activeCategoryId, setActiveCategoryId] = useState<string | undefined>(
     undefined
@@ -24,6 +25,11 @@ const BlogPage = () => {
   const enteredRef = useRef(false);
 
   const [userId, setUserId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const savedSort = localStorage.getItem("blogSortBy") || "newest";
+    setSortBy(savedSort);
+  }, []);
 
   useEffect(() => {
     let storedId = localStorage.getItem("userId");
@@ -81,7 +87,7 @@ const BlogPage = () => {
   const [selectedCategoryName, setSelectedCategoryName] = useState("Barchasi");
 
   // Data
-  const { data: allBlogs, isLoading } = useGetAllBlog(search || undefined);
+  const { data: allBlogs, isLoading } = useGetAllBlog(search || undefined, sortBy);
   const { data: categoryBlogs, isLoading: categoryIsLoading } =
     useGetBlogsByCategory(activeCategoryId);
 
@@ -145,8 +151,7 @@ const BlogPage = () => {
                     setSelectedCategoryName("Barchasi");
                     setSearch("");
                     setMobileSearch("");
-                  }}
-                >
+                  }}>
                   <Search
                     className={`absolute ${
                       active === "search" ? "left-3" : "left-5"
@@ -177,8 +182,7 @@ const BlogPage = () => {
                   onClick={() => {
                     setActive("category");
                     setMobileMode("categories");
-                  }}
-                >
+                  }}>
                   {active === "category" ? (
                     <span className=" text-[#000000] font-bold truncate">
                       {selectedCategoryName}
@@ -189,8 +193,7 @@ const BlogPage = () => {
                   <div
                     className={` relative w-5 h-5 opacity-70 ${
                       active == "category" ? "" : "mx-auto"
-                    }`}
-                  >
+                    }`}>
                     <Image src={blogCategoryIcon2} fill alt="this img" />
                   </div>
                 </button>
@@ -199,8 +202,7 @@ const BlogPage = () => {
               {/* Content list */}
               {mobileMode === "categories" ? (
                 <div
-                  className={`grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden`}
-                >
+                  className={`grid grid-cols-1 sm:grid-cols-2 gap-4 lg:hidden`}>
                   <div className="w-full">
                     <BlogSideBar
                       showOnMobile
@@ -221,8 +223,7 @@ const BlogPage = () => {
                       <Link
                         key={b._id}
                         href={`/blog/${b._id}`}
-                        className="block rounded-[5px] break-words border border-gray-300 shadow-md px-6 py-6 "
-                      >
+                        className="block rounded-[5px] break-words border border-gray-300 shadow-md px-6 py-6 ">
                         <div className="md:mx-auto">
                           <div className="text-4xl capitalize font-bold text-[#4A4A4A]">
                             {b?.title}
@@ -252,16 +253,14 @@ const BlogPage = () => {
               <div
                 className={`lg:hidden mt-10 ${
                   active === "category" ? "hidden" : ""
-                }`}
-              >
+                }`}>
                 <button
                   className="block w-[170px] mx-auto cursor-pointer border border-[#737373] py-2"
                   onClick={() => {
                     setActive("category");
                     window.scrollTo({ top: 0 });
                     setMobileMode("categories");
-                  }}
-                >
+                  }}>
                   Umumiy Bloglar
                 </button>
 
