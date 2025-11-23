@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import AdminImage from "./adminImageComponent";
 import { useSectionStats } from "@/service/hooks/useSectionStats";
 import { v4 as uuidv4 } from "uuid";
 

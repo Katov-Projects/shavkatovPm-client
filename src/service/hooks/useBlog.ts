@@ -23,10 +23,10 @@ export const useBlogCreate = () => {
   });
 };
 
-export const useGetAllBlog = (search?: string) => {
+export const useGetAllBlog = (search?: string, sortBy?: string) => {
   return useQuery({
-    queryKey: ["getAllBlogs", search],
-    queryFn: () => getAllBlogApi(search),
+    queryKey: ["getAllBlogs", search, sortBy],
+    queryFn: () => getAllBlogApi(search, sortBy),
     enabled: true,
   });
 };
