@@ -1,7 +1,7 @@
 "use client";
+export const dynamic = "force-dynamic";
+
 import { useCheckAuth, useLogin } from "@/service";
-import { log } from "console";
-import { prototype } from "events";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -19,17 +19,16 @@ const AdminPage = () => {
   const { mutateAsync: login } = useLogin();
   const { data, isLoading } = useCheckAuth();
 
-    useEffect(() => {
-      try {
-        console.log();
-        if(data?.message === "success"){
-          router.push("/admin/blog");
-        }
-      } catch (error) {
-        console.log(error, "bu error");
+  useEffect(() => {
+    try {
+      console.log();
+      if (data?.message === "success") {
+        router.push("/admin/blog");
       }
-    }, [data]);
-
+    } catch (error) {
+      console.log(error, "bu error");
+    }
+  }, [data]);
 
   const {
     register,
@@ -40,11 +39,10 @@ const AdminPage = () => {
     mode: "onSubmit",
   });
 
-
   const onSubmit = async (data: AdminLoginForm) => {
     try {
       setLoading(true);
-      const res = await login(data)
+      const res = await login(data);
       router.push("/admin/blog");
     } catch (error: any) {
       console.log(error, "onSubmit error");
@@ -76,8 +74,7 @@ const AdminPage = () => {
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="space-y-4"
-          autoComplete="off"
-        >
+          autoComplete="off">
           <div>
             <input
               type="text"
@@ -106,8 +103,7 @@ const AdminPage = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full border border-[#6A6C70] text-[#737373] rounded-[2px] py-2 tracking-wide disabled:opacity-60 shadow-hover hover:bg-white/5 transition-colors"
-            >
+              className="w-full border border-[#6A6C70] text-[#737373] rounded-[2px] py-2 tracking-wide disabled:opacity-60 shadow-hover hover:bg-white/5 transition-colors">
               KIRISH
             </button>
           </div>
