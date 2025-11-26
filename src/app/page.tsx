@@ -1,5 +1,5 @@
 "use client";
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 import HeaderSection from "@/components/UserComponents/HeaderSection";
 import AboutComponent from "@/components/UserComponents/AboutComponent";
@@ -11,7 +11,6 @@ import FooterLayout from "@/layout/Footer";
 import { FAQSectionComponents } from "@/components";
 
 export default function Home() {
-
   return (
     <div className="">
       <NavbarLayout />

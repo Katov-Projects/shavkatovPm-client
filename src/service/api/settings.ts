@@ -1,18 +1,21 @@
 import customAxios from "./customAxios";
 import { AxiosError } from "axios";
+import { UpdateSettingsDto, Settings } from "@/interface";
 
-export const getSettingsApi = async () => {
+export const getSettingsApi = async (): Promise<Settings> => {
   try {
     const res = await customAxios.get("/settings/all");
-    return res.data;
+    return res.data.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateSettingsApi = async (blogSortBy: string) => {
+export const updateSettingsApi = async (
+  payload: UpdateSettingsDto
+): Promise<Settings> => {
   try {
-    const res = await customAxios.put("/settings/update", { blogSortBy });
+    const res = await customAxios.patch("/settings/update", payload);
     return res.data;
   } catch (error) {
     const err = error as AxiosError<{ message: string }>;
