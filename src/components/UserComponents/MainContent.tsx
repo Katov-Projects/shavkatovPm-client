@@ -123,7 +123,11 @@ export default function MainContent() {
                   ? "Kafolatlangan samaradorlik."
                   : settings?.heroSubtitleTwo}
               </p>
-              <p className="text-gray-600">Shavkatov Fayzulloh</p>
+              <p className="text-gray-600">
+                {isLoading
+                  ? "Shavkatov Fayzulloh"
+                  : settings?.mainSectionYourFullName}
+              </p>
             </div>
           </div>
 
@@ -160,7 +164,11 @@ export default function MainContent() {
                 ? "Kafolatlangan samaradorlik."
                 : settings?.heroSubtitleTwo}
             </p>
-            <p className="text-gray-600 hidden md:block">Shavkatov Fayzulloh</p>
+            <p className="text-gray-600 hidden md:block">
+              {isLoading
+                ? "Shavkatov Fayzulloh"
+                : settings?.mainSectionYourFullName}
+            </p>
           </div>
         </div>
 

@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { useSectionStats } from "@/service/hooks/useSectionStats";
 import { v4 as uuidv4 } from "uuid";
@@ -52,7 +53,7 @@ export default function AboutComponent() {
             {isLoading ? "Men haqimda" : settings?.aboutSectionTitle}
           </h2>
           <p className="md:hidden mt-8 text-[25px] text-center mb-2 font-bold">
-            Fayzullohman
+            {isLoading ? "Fayzullohman" : settings?.aboutSectionMainParagraph}
           </p>
         </div>
 

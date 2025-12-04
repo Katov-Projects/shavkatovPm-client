@@ -9,8 +9,10 @@ export interface Settings {
   heroTitle: string;
   heroSubtitleOne: string;
   heroSubtitleTwo: string;
+  mainSectionYourFullName: string;
   blogSortBy?: "newest" | "oldest" | "mostViewed";
   aboutSectionTitle: string;
+  aboutSectionMainParagraph: string;
   aboutSectionParagraphOne: string;
   aboutSectionParagraphTwo: string;
   faqSectionTitle: string;
@@ -23,8 +25,10 @@ export interface UpdateSettingsDto {
   heroTitle?: string;
   heroSubtitleOne?: string;
   heroSubtitleTwo?: string;
+  mainSectionYourFullName?: string;
   blogSortBy?: "newest" | "oldest" | "mostViewed";
   aboutSectionTitle?: string;
+  aboutSectionMainParagraph?: string;
   aboutSectionParagraphOne?: string;
   aboutSectionParagraphTwo?: string;
   faqSectionTitle?: string;
