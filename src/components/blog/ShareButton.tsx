@@ -22,8 +22,7 @@ const ShareButton = () => {
   return (
     <div
       onClick={handleShare}
-      className="mt-15 flex items-center font-bold justify-center gap-1 cursor-pointer hover:opacity-80 transition"
-    >
+      className="mt-15 flex items-center font-bold justify-center gap-1 cursor-pointer hover:opacity-80 transition">
       <RiShareBoxLine />
       <span className="text-sm text-[#000000] text-[12px] opacity-70">
         Ulashish

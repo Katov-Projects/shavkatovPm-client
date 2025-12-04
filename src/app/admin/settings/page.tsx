@@ -21,8 +21,9 @@ type FormValues = {
   heroTitle: string;
   heroSubtitleOne: string;
   heroSubtitleTwo: string;
-  blogSortBy: "newest" | "oldest" | "mostViewed";
+  mainSectionYourFullName: string;
   aboutSectionTitle: string;
+  aboutSectionMainParagraph: string;
   aboutSectionParagraphOne: string;
   aboutSectionParagraphTwo: string;
   faqSectionTitle: string;
@@ -38,6 +39,7 @@ type FormValues = {
   faqFiveContent: string;
   faqSixTitle: string;
   faqSixContent: string;
+  blogSortBy: "newest" | "oldest" | "mostViewed";
 };
 
 const SettingsPage = () => {
@@ -80,7 +82,9 @@ const SettingsPage = () => {
       heroTitle: settings?.heroTitle || "",
       heroSubtitleOne: settings?.heroSubtitleOne || "",
       heroSubtitleTwo: settings?.heroSubtitleTwo || "",
+      mainSectionYourFullName: settings?.mainSectionYourFullName || "",
       aboutSectionTitle: settings?.aboutSectionTitle || "",
+      aboutSectionMainParagraph: settings?.aboutSectionMainParagraph || "",
       aboutSectionParagraphOne: settings?.aboutSectionParagraphOne || "",
       aboutSectionParagraphTwo: settings?.aboutSectionParagraphTwo || "",
       faqSectionTitle: settings?.faqSectionTitle || "",
@@ -107,12 +111,14 @@ const SettingsPage = () => {
         confirmLogin: "",
         password: "",
         confirmPassword: "",
-        heroTitle: settings.heroTitle || "",
-        heroSubtitleOne: settings.heroSubtitleOne || "",
-        heroSubtitleTwo: settings.heroSubtitleTwo || "",
-        aboutSectionTitle: settings.aboutSectionTitle || "",
-        aboutSectionParagraphOne: settings.aboutSectionParagraphOne || "",
-        aboutSectionParagraphTwo: settings.aboutSectionParagraphTwo || "",
+        heroTitle: settings?.heroTitle || "",
+        heroSubtitleOne: settings?.heroSubtitleOne || "",
+        heroSubtitleTwo: settings?.heroSubtitleTwo || "",
+        mainSectionYourFullName: settings?.mainSectionYourFullName || "",
+        aboutSectionTitle: settings?.aboutSectionTitle || "",
+        aboutSectionMainParagraph: settings?.aboutSectionMainParagraph || "",
+        aboutSectionParagraphOne: settings?.aboutSectionParagraphOne || "",
+        aboutSectionParagraphTwo: settings?.aboutSectionParagraphTwo || "",
         faqSectionTitle: settings?.faqSectionTitle || "",
         faqOneTitle: settings?.faqItems?.[0]?.title || "",
         faqOneContent: settings?.faqItems?.[0]?.content || "",
@@ -126,7 +132,7 @@ const SettingsPage = () => {
         faqFiveContent: settings?.faqItems?.[4]?.content || "",
         faqSixTitle: settings?.faqItems?.[5]?.title || "",
         faqSixContent: settings?.faqItems?.[5]?.content || "",
-        blogSortBy: settings.blogSortBy || (currentSortBy as any),
+        blogSortBy: settings?.blogSortBy || (currentSortBy as any),
       });
     }
   }, [settings, reset, currentSortBy]);
@@ -152,7 +158,11 @@ const SettingsPage = () => {
       const faqItems = [
         { id: "1", title: values.faqOneTitle, content: values.faqOneContent },
         { id: "2", title: values.faqTwoTitle, content: values.faqTwoContent },
-        { id: "3", title: values.faqThreeTitle, content: values.faqThreeContent },
+        {
+          id: "3",
+          title: values.faqThreeTitle,
+          content: values.faqThreeContent,
+        },
         { id: "4", title: values.faqFourTitle, content: values.faqFourContent },
         { id: "5", title: values.faqFiveTitle, content: values.faqFiveContent },
         { id: "6", title: values.faqSixTitle, content: values.faqSixContent },
@@ -164,7 +174,9 @@ const SettingsPage = () => {
         heroTitle: values.heroTitle,
         heroSubtitleOne: values.heroSubtitleOne,
         heroSubtitleTwo: values.heroSubtitleTwo,
+        mainSectionYourFullName: values.mainSectionYourFullName,
         aboutSectionTitle: values.aboutSectionTitle,
+        aboutSectionMainParagraph: values.aboutSectionMainParagraph,
         aboutSectionParagraphOne: values.aboutSectionParagraphOne,
         aboutSectionParagraphTwo: values.aboutSectionParagraphTwo,
         faqSectionTitle: values.faqSectionTitle,
@@ -309,6 +321,19 @@ const SettingsPage = () => {
               </p>
             )}
           </div>
+
+          <div>
+            <input
+              {...register("mainSectionYourFullName")}
+              placeholder="HERO SECTION YOUR FULL NAME"
+              className="w-full rounded border border-[#3F3F3F] bg-[#1F1F1F] px-4 py-3 text-[#E5E5E5] placeholder:text-[#7B7B7B] focus:outline-none"
+            />
+            {errors.mainSectionYourFullName && (
+              <p className="mt-1 text-xs text-red-400">
+                {errors.mainSectionYourFullName.message}
+              </p>
+            )}
+          </div>
         </div>
         {/* Home Page Settings end */}
 
@@ -324,6 +349,19 @@ const SettingsPage = () => {
             {errors.aboutSectionTitle && (
               <p className="mt-1 text-xs text-red-400">
                 {errors.aboutSectionTitle.message}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <input
+              {...register("aboutSectionMainParagraph")}
+              placeholder="ABOUT PAGE SECTION MAIN PARAGRAPH"
+              className="w-full rounded border border-[#3F3F3F] bg-[#1F1F1F] px-4 py-3 text-[#E5E5E5] placeholder:text-[#7B7B7B] focus:outline-none"
+            />
+            {errors.aboutSectionMainParagraph && (
+              <p className="mt-1 text-xs text-red-400">
+                {errors.aboutSectionMainParagraph.message}
               </p>
             )}
           </div>

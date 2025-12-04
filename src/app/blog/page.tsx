@@ -7,7 +7,6 @@ import BlogSideBar from "@/layout/blog/BlogSideBar";
 import { debounce } from "@/lib/utils";
 import { Search, Filter } from "lucide-react";
 import { IoChevronUpCircleOutline, IoEye } from "react-icons/io5";
-import blogCategoryIcon from "../../../public/blogCategoryIcon.svg";
 import Image from "next/image";
 import NotFoundSearch from "@/components/blog/NotFoundSearch";
 import { socket } from "@/lib/socket";
