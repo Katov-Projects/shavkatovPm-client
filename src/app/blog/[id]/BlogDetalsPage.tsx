@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useGetByIdBlog, useGetSameTags } from "@/service";
 import BlogSideBar from "@/layout/blog/BlogSideBar";
@@ -95,8 +95,7 @@ const BlogDetalsPage = ({ id }: { id: string }) => {
             <div className="mb-5">
               <Link
                 href={"/blog"}
-                className="block mx-auto w-[235px] text-center font-bold text-[18px] text-[#000000] opacity-70 py-2 shadow-md"
-              >
+                className="block mx-auto w-[235px] text-center font-bold text-[18px] text-[#000000] opacity-70 py-2 shadow-md">
                 Asosiy bo’limga qaytish
               </Link>
             </div>
@@ -129,7 +128,27 @@ const BlogDetalsPage = ({ id }: { id: string }) => {
               {blog?.sections?.map((s: any, idx: number) => {
                 const subtitle = (
                   <p className="text-[#737373] whitespace-pre-wrap text-[14px] font-bold opacity-90 leading-7">
-                    {s.subtitle}
+                    {s.subtitle
+                      .split("\n")
+                      .map((line: string, lineIndex: string) => (
+                        <React.Fragment key={lineIndex}>
+                          {line.split(" ").map((item, index) =>
+                            item.startsWith("http") ? (
+                              <a
+                                key={index}
+                                href={item}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline">
+                                {item}
+                              </a>
+                            ) : (
+                              item + " "
+                            )
+                          )}
+                          <br />
+                        </React.Fragment>
+                      ))}
                   </p>
                 );
 
@@ -194,8 +213,7 @@ const BlogDetalsPage = ({ id }: { id: string }) => {
                     <Link
                       key={b._id}
                       href={`/blog/${b._id}`}
-                      className="block rounded-[5px] border border-gray-300 shadow-md px-6 py-6 "
-                    >
+                      className="block rounded-[5px] border border-gray-300 shadow-md px-6 py-6 ">
                       <div className="text-4xl capitalize font-bold text-[#4A4A4A]">
                         {b?.title}
                       </div>
@@ -223,8 +241,7 @@ const BlogDetalsPage = ({ id }: { id: string }) => {
             <div className="lg:hidden mt-10">
               <Link
                 href={"/blog"}
-                className="block w-[170px] text-center mx-auto cursor-pointer border border-[#737373] py-2"
-              >
+                className="block w-[170px] text-center mx-auto cursor-pointer border border-[#737373] py-2">
                 Umumiy Bloglar
               </Link>
             </div>
