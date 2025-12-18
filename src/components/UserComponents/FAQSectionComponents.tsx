@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useSectionStats } from "@/service/hooks/useSectionStats";
 import { v4 as uuidv4 } from "uuid";
 import { useSettings } from "@/service";
-import Faq1 from "./FaqTextComponents";
+import Faq1 from "./FAQTextComponents";
 
 const FAQSectionComponents = () => {
   const [userId, setUserId] = useState<string | null>(null);
