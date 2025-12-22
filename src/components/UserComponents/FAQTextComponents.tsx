@@ -115,7 +115,7 @@ interface Faq1Props {
 }
 
 function Faq1({ items }: Faq1Props) {
-  const faqItems = items && items.length > 0 ? items : defaultItems;
+  const faqItems = items && items.length > 0 ? defaultItems : items;
 
   return (
     <section className="py-3 md:py-16">
@@ -135,7 +135,7 @@ function Faq1({ items }: Faq1Props) {
             className="w-full rounded-xl backdrop-blur-sm"
             defaultValue="0">
             {/* ⬇️ endi shu yerda FaqItem ishlatamiz */}
-            {faqItems.map((item, index) => (
+            {faqItems?.map((item, index) => (
               <FaqItem key={item.id} item={item} index={index} />
             ))}
           </Accordion>
