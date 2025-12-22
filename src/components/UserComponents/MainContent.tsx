@@ -98,10 +98,12 @@ export default function MainContent() {
           device === "iPhone 14 Pro Max"
             ? "flex justify-center items-center"
             : ""
-        } px-4 h-full py-12`}>
+        } px-4 h-full py-12`}
+      >
         <div
           className={`flex flex-col h-[80%]
-            m-auto md:flex-row gap-8 lg:gap-12 items-center justify-between lg:justify-center`}>
+            m-auto md:flex-row gap-8 lg:gap-12 items-center justify-between lg:justify-center`}
+        >
           {/* Left Section - Text Content */}
           <div className="w-full md:h-102 md:w-1/2 flex flex-col justify-between space-y-6 lg:space-y-8 lg:order-1">
             {/* Main Title */}
@@ -109,24 +111,27 @@ export default function MainContent() {
               <h1 className="text-3xl text-center md:text-start sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight">
                 {isLoading
                   ? "Hammasi IT Loyiha boshqaruvi haqida"
-                  : settings?.heroTitle}
+                  : settings?.heroTitle ||
+                    "Hammasi IT Loyiha boshqaruvi haqida"}
               </h1>
             </div>
 
             {/* Descriptive Text */}
             <div className="hidden md:block space-y-2 lg:space-y-3 text-lg sm:text-xl md:text-4xl font-bold text-[#4A4A4A]">
               <p className="">
-                {isLoading ? "Tartibli boshqaruv" : settings?.heroSubtitleOne}
+                {isLoading
+                  ? "Tartibli boshqaruv"
+                  : settings?.heroSubtitleOne || "Tartibli boshqaruv"}
               </p>
               <p className="">
                 {isLoading
                   ? "Kafolatlangan samaradorlik."
-                  : settings?.heroSubtitleTwo}
+                  : settings?.heroSubtitleTwo || "Kafolatlangan samaradorlik"}
               </p>
               <p className="text-gray-600">
                 {isLoading
                   ? "Shavkatov Fayzulloh"
-                  : settings?.mainSectionYourFullName}
+                  : settings?.mainSectionYourFullName || "Shavkatov Fayzulloh"}
               </p>
             </div>
           </div>
@@ -157,17 +162,19 @@ export default function MainContent() {
 
           <div className="md:hidden w-full mt-10 space-y-2 lg:space-y-3 text-2xl sm:text-xl md:text-4xl font-bold text-[#4A4A4A]">
             <p className="text-center">
-              {isLoading ? "Tartibli boshqaruv" : settings?.heroSubtitleOne}
+              {isLoading
+                ? "Tartibli boshqaruv"
+                : settings?.heroSubtitleOne || "Tartibli boshqaruv"}
             </p>
             <p className="text-center">
               {isLoading
                 ? "Kafolatlangan samaradorlik."
-                : settings?.heroSubtitleTwo}
+                : settings?.heroSubtitleTwo || "Kafolatlangan samaradorlik"}
             </p>
             <p className="text-gray-600 hidden md:block">
               {isLoading
                 ? "Shavkatov Fayzulloh"
-                : settings?.mainSectionYourFullName}
+                : settings?.mainSectionYourFullName || "Shavkatov Fayzulloh"}
             </p>
           </div>
         </div>
